@@ -20,3 +20,23 @@ function init() {
     displayName();
   } 
   init();
+  //mdn notes Nested functions have access to variables declared in their outer scope.
+  //in dev tools the scope of this fn is revealed as
+  //[[Scopes]]: Scopes[1]
+// 0: Global {window: Window, self: Win
+
+  function makeFunc() {
+    var name = 'Mozilla';
+    function displayName() {
+      alert(name);
+    }
+    return displayName;
+  }
+  
+  var myFunc = makeFunc();
+  myFunc();
+//in dev tools this is revealed as a closure in the scope like this
+// [[Scopes]]: Scopes[2]
+// 0: Closure (makeFunc)
+// name: "Mozilla"
+//so what's the difference??
