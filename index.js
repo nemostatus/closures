@@ -40,3 +40,5 @@ function init() {
 // 0: Closure (makeFunc)
 // name: "Mozilla"
 //so what's the difference??
+//the invocation syntax is different and seems to be unnecessary.. why use a function expression rather than just invoking
+//it also why return displayName instead of displayName()??
