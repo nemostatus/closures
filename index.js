@@ -8,6 +8,9 @@ alert(outsideVarThatExistsInMemoryEvenAfterOuterFnIsPoppedOffExecutionStack)
     return innerFn
 }
 
+var myFn = outerFn();
+myFn();
+
 // let outer = outerFn() //in window it doesnt identify it as a closure in scope, check why
 // outer()
 
