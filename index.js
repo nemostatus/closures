@@ -1,12 +1,12 @@
 // alert("it's connected")
 
-// function outerFn(){
-//     let outsideVarThatExistsInMemoryEvenAfterOuterFnIsPoppedOffExecutionStack = "This is one crazy variable name"
-//     function innerFn(){
-// alert(outsideVarThatExistsInMemoryEvenAfterOuterFnIsPoppedOffExecutionStack)
-//     }
-//     return innerFn
-// }
+function outerFn(){
+    let outsideVarThatExistsInMemoryEvenAfterOuterFnIsPoppedOffExecutionStack = "This is one crazy variable name"
+    function innerFn(){
+alert(outsideVarThatExistsInMemoryEvenAfterOuterFnIsPoppedOffExecutionStack)
+    }
+    return innerFn
+}
 
 // let outer = outerFn() //in window it doesnt identify it as a closure in scope, check why
 // outer()
@@ -26,11 +26,12 @@ function init() {
 // 0: Global {window: Window, self: Win
 
   function makeFunc() {
-    var name = 'Mozilla';
+    var name = 'Mozilla'; //this variable is in the execution context of the makeFunc()
     function displayName() {
-      alert(name);
+      alert(name); //this is the code property of the nested fn displayName()
     }
-    return displayName;
+    return displayName; //why return displayName and not displayName() let's change it and see the difference
+    //this error occurs if changed to displayName() index.js:37 Uncaught TypeError: myFunc is not a function
   }
   
   var myFunc = makeFunc();
@@ -40,5 +41,6 @@ function init() {
 // 0: Closure (makeFunc)
 // name: "Mozilla"
 //so what's the difference??
-//the invocation syntax is different and seems to be unnecessary.. why use a function expression rather than just invoking
-//it also why return displayName instead of displayName()??
+//What's different (and interesting) is that the displayName() inner function is returned from the outer function before being executed.
+//thats how mdn describes the difference
+//. A closure is the combination of a function and the lexical environment within which that function was declared. 
